@@ -1,0 +1,291 @@
+package List;
+
+import javax.security.sasl.SaslClient;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
+public class e1Train {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        List<Integer> wagons = Arrays.stream((scanner.nextLine().split(" "))).map(Integer::parseInt).collect(Collectors.toList());
+
+        int maxWagonCapacity = Integer.parseInt(scanner.nextLine());
+        String command = scanner.nextLine();
+        while (!command.equals("end")) {
+            List<String> commandAdd = Arrays.stream((command.split(" "))).collect(Collectors.toList());
+            if (commandAdd.get(0).equals("Add")) {
+                int passengersBoarding = Integer.parseInt(commandAdd.get(1));
+                wagons.add(passengersBoarding);
+            } else {
+                int passengersBoarding = Integer.parseInt(commandAdd.get(0));
+
+                for (int i = 0; i < wagons.size(); i++) {
+
+                    int wagon = wagons.get(i);
+                    if (wagon + passengersBoarding <= maxWagonCapacity) {
+                        wagons.set(i, wagon + passengersBoarding);
+                        break;
+                    }
+                }
+
+            }
+            command = (scanner.nextLine());
+        }
+        for (int wagon: wagons) {
+
+        }
+         System.out.println(wagons.toString().replaceAll("[\\[\\],]", ""));
+    }
+}
+..................................
+package List;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
+public class e2ChangeList {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        List<Integer> numList = Arrays.stream((scanner.nextLine().split(" "))).map(Integer::parseInt).collect(Collectors.toList());
+        String  input = scanner.nextLine();
+        while (!input.equals("end")){
+            List<String>commands = Arrays.stream(input.split(" ")).collect(Collectors.toList());
+            if (commands.get(0).equals("Delete")){
+                int num = Integer.parseInt(commands.get(1));
+                //numList.remove();
+                numList.removeAll(Arrays.asList(num));
+
+            }else if(commands.get(0).equals("Insert")){
+                int element = Integer.parseInt(commands.get(1));
+                int position = Integer.parseInt(commands.get(2));
+                numList.add(position,element);
+
+            }
+            input=(scanner.nextLine());
+        }
+        for (int element: numList){
+        }
+        System.out.println(numList.toString().replaceAll("[\\[\\],]", ""));
+    }
+
+}
+...................................................
+package List;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
+public class e3HouseParty {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int commands = Integer.parseInt(scanner.nextLine());
+        List<String> guestList = new ArrayList<>();
+
+        for (int i = 0; i < commands; i++) {
+            List<String> goingOrNot = Arrays.stream((scanner.nextLine().split(" "))).collect(Collectors.toList());
+            String name = goingOrNot.get(0);
+            if (goingOrNot.size() == 3) {
+                if (guestList.contains(name)) {
+                    System.out.printf("%s is already in the list!%n", name);
+                } else {
+                    guestList.add(name);
+                }
+            } else if (goingOrNot.size() == 4) {
+                if (!guestList.contains(name)) {
+                    System.out.printf("%s is not in the list!%n", name);
+                } else {
+                    guestList.remove(name);
+                }
+            }
+        }
+        for (String item: guestList){
+            System.out.println(item);
+        }
+      
+    }
+}
+................................................
+package List;
+
+import java.util.*;
+import java.util.stream.Collectors;
+
+public class e4ListOperations {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        List<Integer> numberList = Arrays.stream((scanner.nextLine().split(" "))).map(Integer::parseInt).collect(Collectors.toList());
+        String command = scanner.nextLine();
+        while (!command.equals("End")) {
+            List<String> commandList = Arrays.stream(command.split(" ")).collect(Collectors.toList());
+            String commandOne = commandList.get(0);
+
+            switch (commandOne) {
+
+                case "Add":
+                    int num = Integer.parseInt(commandList.get(1));
+                    numberList.add(num);
+                    break;
+                case "Insert":
+                    int element = Integer.parseInt(commandList.get(1));
+                    int index = Integer.parseInt(commandList.get(2));
+                    if (index<0||index> numberList.size()-1){
+                        System.out.println("Invalid index");
+                    }else {
+                        numberList.add(index, element);
+                    }
+                    break;
+                case "Remove":
+                    int idx = Integer.parseInt(commandList.get(1));
+                    if(idx<0||idx>numberList.size()-1){
+                        System.out.println("Invalid index");
+                    }else {
+                        numberList.remove(idx);
+                    }
+
+                    break;
+                case "Shift":
+                    //•	Shift наляво {count} - първото число става последно "брой" пъти
+                    //•	Shift надясно {count} - последното число става първо "брой" пъти
+                    if (commandList.get(1).equals("left")) {
+                        int position = Integer.parseInt(commandList.get(2));
+                        for (int i = 0; i < position; i++) {
+                            int firstNum = numberList.get(0);
+                            numberList.remove(0);
+                            numberList.add(firstNum);
+                        }
+
+                    } else if (commandList.get(1).equals("right")) {
+
+                        int position = Integer.parseInt(commandList.get(2));
+                        for (int i = 0; i <= position; i++) {
+                            int lastNum = numberList.get(numberList.size()-1);
+                            numberList.remove((numberList.size()-1));
+                            numberList.add(0,(numberList.size()-1));
+                        }
+                    }
+                    break;
+            }
+            command = (scanner.nextLine());
+        }
+        for (Integer num: numberList){
+            System.out.print(num+" ");
+        }
+    }
+}
+........................................
+package List;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
+public class e5 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        List<Integer> numberList = Arrays.stream((scanner.nextLine().split(" "))).map(Integer::parseInt).collect(Collectors.toList());
+        List<Integer> bombNum = Arrays.stream((scanner.nextLine().split(" "))).map(Integer::parseInt).collect(Collectors.toList());
+        int bomb = bombNum.get(0);
+        int power = bombNum.get(1);
+        for (int i = 0; i < numberList.size(); i++) {
+            if (numberList.get(i) == (bomb)) {
+                for (int j = 1; j <= power; j++) {
+                   int re = numberList.indexOf(bomb);
+                    numberList.remove(re + 1);
+                }
+                for (int j = 1; j <= power; j++) {
+                    int re = numberList.indexOf(bomb);
+                    numberList.remove( re - 1);
+                }
+                numberList.remove(Integer.valueOf(bomb));
+            }
+        }
+        int sum = 0;
+        for (Integer num : numberList) {
+            sum += num;
+        }
+        System.out.println(sum);
+
+    }
+}
+.................................................
+package List;
+
+import javax.security.sasl.SaslClient;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
+public class e6CardsGame {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        List<Integer> firstPlayer = Arrays.stream((scanner.nextLine().split(" "))).map(Integer::parseInt).collect(Collectors.toList());
+        List<Integer> secondPlayer = Arrays.stream((scanner.nextLine().split(" "))).map(Integer::parseInt).collect(Collectors.toList());
+
+        while (firstPlayer.size()!=0 && secondPlayer.size()!=0) {
+            int firstCard = firstPlayer.get(0);
+            int secCard = secondPlayer.get(0);
+
+            if (firstCard > secCard) {
+                firstPlayer.add(firstCard);
+                firstPlayer.remove(0);
+                firstPlayer.add(secCard);
+                secondPlayer.remove(0);
+            } else if (secCard > firstCard) {
+                secondPlayer.add(secCard);
+                secondPlayer.remove(0);
+                secondPlayer.add(firstCard);
+                firstPlayer.remove(0);
+            } else if (Integer.valueOf(firstCard) == Integer.valueOf(secCard)) {
+                firstPlayer.remove(0);
+                secondPlayer.remove(0);
+            }
+
+            if (firstPlayer.isEmpty()) {
+                int sum = 0;
+                for (Integer second : secondPlayer) {
+                    sum += second;
+                }
+                System.out.printf("Second player wins! Sum: %d", sum);
+               
+
+            } else if (secondPlayer.isEmpty()) {
+                int sum = 0;
+                for (Integer first : firstPlayer) {
+                    sum += first;
+                }
+                System.out.printf("First player wins! Sum: %d", sum);
+
+            }
+        }
+    }
+}
+..............................................
+package List;
+
+import java.util.*;
+import java.util.stream.Collectors;
+
+public class e7AppendArrays {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        List<String> numList = Arrays.stream((scanner.nextLine().split("\\|"))).collect(Collectors.toList());
+        Collections.reverse(numList);
+        System.out.println(numList.toString().replaceAll("[\\[\\],]", "").trim().replaceAll("\\s+"," "));
+    }
+}
+..........................................
+
+
+
