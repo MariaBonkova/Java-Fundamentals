@@ -1,0 +1,180 @@
+package RegularExpressions;
+
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class eFurniture {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Pattern pattern = Pattern.compile(">>(?<furniture>[A-Z]+[a-z]*)<<(?<price>[0-9]+.[0-9]*)!(?<quantity>[0-9]+)\\b");
+        String  input = scanner.nextLine();
+       List<String> furnitureList=new ArrayList<>();
+        //Map<String,Double>infoMap = new HashMap<>();
+          double sum=0;
+        while (!input.equals("Purchase")){
+            Matcher matcher = pattern.matcher(input);
+            while (matcher.find()){
+              String furnitureName = matcher.group("furniture");
+              double price = Double.parseDouble(matcher.group("price"));
+              int quantity = Integer.parseInt(matcher.group("quantity"));
+              double totalPr = price*quantity;
+              sum+=totalPr;
+
+                furnitureList.add(furnitureName);
+
+            }
+            input=(scanner.nextLine());
+        }
+        System.out.println("Bought furniture:");
+        furnitureList.forEach(System.out::println);
+        System.out.printf("Total money spend: %.2f",sum);
+
+
+    }
+}
+......................................
+package RegularExpressions;
+
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+
+public class e2Race {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        List<String> participantsList = Arrays.stream((scanner.nextLine()).split(",")).collect(Collectors.toList());
+        Map<String,Integer>validParticipantsMap = new LinkedHashMap<>();
+        participantsList.forEach(racer-> validParticipantsMap.put(racer,0));
+
+        String input  = scanner.nextLine();
+        Pattern namePat = Pattern.compile("(?<name>[A-Za-z])*");
+        Pattern distancePat = Pattern.compile("[0-9]");
+
+        while (!input.equals("end of race")){
+            StringBuilder nameSb = new StringBuilder();
+            Matcher nameMatcher = namePat.matcher(input);
+            while (nameMatcher.find()){
+                String name = nameMatcher.group("name");
+                nameSb.append(nameMatcher.group());
+            }
+
+            int sum =0;
+            Matcher distanceMatcher = distancePat.matcher(input);
+            while (distanceMatcher.find()){
+               int dist = Integer.parseInt(distanceMatcher.group());
+               sum+=dist;
+
+
+            }
+            String racerName = nameSb.toString();
+
+          if(validParticipantsMap.containsKey(racerName)){
+              int currentDistance =validParticipantsMap.get(racerName);
+              validParticipantsMap.put(racerName,currentDistance+sum);
+          }
+            input= (scanner.nextLine());
+        }
+       List<String> firstTree=validParticipantsMap.entrySet().stream()
+               .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).
+                       limit(3).map(entry->entry.getKey()).collect(Collectors.toList());
+
+        System.out.printf("1st place: %s%n",firstTree.get(0));
+        System.out.printf("2nd place: %s%n",firstTree.get(1));
+        System.out.printf("3rd place: %s",firstTree.get(2));
+    }
+}
+..............................
+package RegularExpressions;
+
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class e3SoftUniBarIncome {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+        Pattern pattern = Pattern.compile("%(?<customerName>[A-Z][a-z]*)%[^|$%.]*<(?<product>\\w+)>[^|$%.]*" +
+                "\\|(?<count>[0-9]+)\\|[^|$%.]*?(?<price>[0-9]+\\.*[0-9]*)\\$");
+
+        double sum=0;
+        while (!input.equals("end of shift")) {
+            Matcher mather = pattern.matcher(input);
+            while (mather.find()) {
+                String customerName = mather.group("customerName");
+                String products= mather.group("product");
+                int count =Integer.parseInt(mather.group("count"));
+                double price = Double.parseDouble(mather.group("price"));
+                double finalPrice=count*price;
+                System.out.printf("%s: %s - %.2f%n",customerName,products,finalPrice);
+                sum+=finalPrice;
+            }
+
+            input = (scanner.nextLine());
+        }
+        System.out.printf("Total income: %.2f",sum);
+    }
+}
+..............................
+package RegularExpressions;
+
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class e4StarEnigma {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = Integer.parseInt(scanner.nextLine());
+        //махам буквите s t a r и ги броя в каунтър изкарвам един кърент символ и - броя на буквите
+        String input = scanner.nextLine();
+        int countLetter = 0;
+        List<String> attackedMap = new ArrayList<>();
+        List<String> destroyedMap = new ArrayList<>();
+        for (int i = 1; i <= n; i++) {
+            for (int j = 0; j < input.length(); j++) {
+                char current = input.toLowerCase().charAt(j);
+                if (current == 's' || current == 't' || current == 'a' || current == 'r') {
+                    countLetter++;
+                }
+            }
+            StringBuilder encryptedSb = new StringBuilder();
+            for (int k = 0; k < input.length(); k++) {
+                char current = input.charAt(k);
+                current = (char) (current - countLetter);
+                encryptedSb.append(current);
+            }
+            countLetter = 0;
+            String encrypted = encryptedSb.toString();
+
+            Pattern pattern = Pattern.compile("@(?<planet>[A-Z][\\w]+):(?<population>[\\d]+)!(?<attackType>[A-Z]{1})!->(?<soldier>[\\d]+)");
+            Matcher matcher = pattern.matcher(encrypted);
+            int atackA = 0, atackD = 0;
+            while (matcher.find()) {
+                String planet = matcher.group("planet");
+                int population = Integer.parseInt(matcher.group("population"));
+                String attackType = matcher.group("attackType");
+                if (attackType.equals("A")) {
+                    atackA++;
+                    attackedMap.add(planet);
+                } else {
+                    atackD++;
+                    destroyedMap.add(planet);
+                }
+
+            }
+            input = (scanner.nextLine());
+        }
+        System.out.println("Attacked planets: " + attackedMap.size());
+        Collections.sort(attackedMap);
+        attackedMap.forEach(pl -> System.out.println("->" + pl));
+
+        System.out.println("Destroyed planets: " + destroyedMap.size());
+        Collections.sort(destroyedMap);
+        destroyedMap.forEach(pl -> System.out.println("-> " + pl));
+
+    }
+}
+...................................
