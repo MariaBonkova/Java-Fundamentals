@@ -1,0 +1,66 @@
+package AssociativeArrays;
+
+import java.security.Key;
+import java.util.Arrays;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.TreeMap;
+
+public class l1CountRealNumbers {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        double[] nums= Arrays.stream((scanner.nextLine()).split(" ")).mapToDouble(Double::parseDouble).toArray();
+
+        Map<Double,Integer> counts = new TreeMap<>();
+        for (double num: nums) {
+            if(!counts.containsKey(num)){
+                counts.put(num,1);
+            }else{
+                counts.put(num, counts.get(num)+1);
+            }
+        }
+        for (Map.Entry<Double,Integer> entry:counts.entrySet()) {
+            System.out.printf("%.0f -> %d%n", entry.getKey(),entry.getValue());
+            
+        }
+    }
+}
+........................................
+package AssociativeArrays;
+
+import java.util.*;
+import java.util.stream.Collectors;
+
+public class WordSynonyms {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = Integer.parseInt(scanner.nextLine());
+        Map<String,List<String>> all = new LinkedHashMap<>();
+        for (int i = 0; i <n ; i++) {
+            String word =(scanner.nextLine());
+            String synonyms =(scanner.nextLine());
+
+            all.putIfAbsent(word,new ArrayList<>());
+            all.get(word).add(synonyms);
+
+        }
+        for (Map.Entry<String,List<String>> entry:all.entrySet()) {
+            
+            System.out.printf("%s - %s%n", entry.getKey(), String.join(", "), entry.getValue());//
+        }
+    }
+}
+............................................
+package AssociativeArrays;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class l4WordFilter {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String[] input = scanner.nextLine().split(" ");
+        Arrays.stream(input).filter(word->word.length()%2==0).forEach(word -> System.out.println(word));
+    }
+
+}
