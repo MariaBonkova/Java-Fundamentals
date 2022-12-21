@@ -1,0 +1,252 @@
+package AssociativeArrays;
+
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class e1CountCharsString {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String input = (scanner.nextLine());
+        Map<Character,Integer> symbolMap = new LinkedHashMap<>();
+        for (char symbol :input.toCharArray()) {
+            if (symbol==' '){
+                continue;
+            }
+            if(!symbolMap.containsKey(symbol)){
+                symbolMap.put(symbol,1);
+            }else {
+                int current = symbolMap.get(symbol);
+                symbolMap.put(symbol,current+1);
+            }
+
+        }
+       symbolMap.entrySet().forEach(entry -> System.out.printf("%c -> %d%n",entry.getKey(),entry.getValue()));
+
+    }
+
+}
+.............................................
+package AssociativeArrays;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class e2MinerTask {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String command = (scanner.nextLine());
+        Map<String, Integer> miner = new LinkedHashMap<>();
+        while (!command.equals("stop")) {
+            String resource = (command);
+            int quantity = Integer.parseInt(scanner.nextLine());
+            if (!miner.containsKey(resource)) {
+                miner.put(resource, quantity);
+            } else if (miner.containsKey(resource)) {
+                int current = miner.get(resource);
+                miner.put(resource, current + quantity);
+            }
+            command = (scanner.nextLine());
+        }
+        miner.entrySet().forEach(entry -> System.out.println(entry.getKey() + " -> " + entry.getValue()));
+    }
+}
+..........................................
+package AssociativeArrays;
+
+import java.util.*;
+import java.util.stream.Collectors;
+
+public class e4Orders {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String command = scanner.nextLine();
+        Map<String, Double> itemPrice = new LinkedHashMap<>();
+        Map<String, Double> itemQuntity = new LinkedHashMap<>();
+        while (!command.equals("buy")) {
+            List<String> items = Arrays.stream(command.split(" ")).collect(Collectors.toList());
+            String name = items.get(0);
+            double price = Double.parseDouble(items.get(1));
+            double quantity = Double.parseDouble(items.get(2));
+            itemPrice.put(name, price);
+            if (!itemQuntity.containsKey(name)) {
+                itemQuntity.put(name, quantity);
+            } else {
+                itemQuntity.put(name, itemQuntity.get(name) + quantity);
+            }
+            command = (scanner.nextLine());
+        }
+        for (Map.Entry<String,Double> entry:itemPrice.entrySet()) {
+            String productName = entry.getKey();
+            double finalSum = entry.getValue() * itemQuntity.get(productName);
+            System.out.printf("%s -> %.2f\n", productName, finalSum);
+        }
+    }
+}
+..........................................
+package AssociativeArrays;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class e5SoftUniParking {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = Integer.parseInt(scanner.nextLine());
+        Map<String, String> registerMap = new LinkedHashMap<>();
+        for (int i = 0; i < n; i++) {
+            String[] input = (scanner.nextLine().split(" "));
+            String command = input[0];
+            String userName = input[1];
+            switch (command) {
+                case "register":
+                    String licensePlateNumber = input[2];
+                    if (!registerMap.containsKey(userName)) {
+                        registerMap.put(userName, licensePlateNumber);
+                        System.out.printf("%s registered %s successfully%n", userName, licensePlateNumber);
+
+                    }else {
+                        System.out.printf("ERROR: already registered with plate number %s%n", licensePlateNumber);
+                    }
+                    break;
+
+                case "unregister":
+                    if (!registerMap.containsKey(userName)) {
+                        System.out.printf("ERROR: user %s not found%n", userName);
+                    } else {
+                        System.out.printf("%s unregistered successfully%n", userName);
+                        String licensePlateNum = registerMap.get(userName);
+                        registerMap.remove(userName, licensePlateNum);
+                    }
+
+                    break;
+            }
+        }
+        registerMap.entrySet().forEach(entry-> System.out.printf("%s => %s%n",entry.getKey(),entry.getValue()));
+    }
+}
+..........................................
+package AssociativeArrays;
+
+import java.util.*;
+
+public class e6Courses {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        String command = scanner.nextLine();
+        Map<String, List<String>> coursesMap = new LinkedHashMap<>();
+        while (!command.equals("end")) {
+            String[] input = (command).split(" : ");
+            String course = input[0];
+            String student = input[1];
+            if (!coursesMap.containsKey(course)) {
+                coursesMap.put(course, new ArrayList<>());
+                coursesMap.get(course).add(student);
+            }else {
+               // coursesMap.put(course, new ArrayList<>());
+                coursesMap.get(course).add(student);
+
+            }
+
+            command = (scanner.nextLine());
+        }
+        coursesMap.entrySet().stream().sorted((e1, e2) -> Integer.compare(e2.getValue().size(), e1.getValue()
+                .size())).forEach(entry -> {
+            System.out.println(entry.getKey() + ": " + entry.getValue().size());
+            entry.getValue().stream().sorted().forEach(student -> System.out.printf("-- %s%n", student)); });
+    }
+}
+........................................
+package AssociativeArrays;
+
+import org.w3c.dom.stylesheets.LinkStyle;
+
+import java.util.*;
+
+public class e7StudentAcademy {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = Integer.parseInt(scanner.nextLine());
+        Map<String, Double> result = new LinkedHashMap<>();
+
+        for (int i = 0; i < n; i++) {
+            String studentName = (scanner.nextLine());
+            double grade = Double.parseDouble(scanner.nextLine());
+            if (!result.containsKey(studentName)) {
+                result.put(studentName, grade);
+            } else {
+                int count = 1;
+                double current = result.get(studentName);
+                count++;
+                result.put(studentName, (grade + current) / count);
+            }
+
+        }
+        for (Map.Entry<String, Double> entry : result.entrySet()) {
+            if (entry.getValue() < 4.50) {
+                result.remove(entry.getKey(), entry.getValue());
+            }
+            
+        }
+        result.entrySet().stream().sorted((e1, e2) -> e2.getValue().compareTo(e1.getValue()))
+                .forEach(entry-> System.out.printf("%s -> %.2f%n",entry.getKey(),entry.getValue()));
+    }
+}
+......................................
+package AssociativeArrays;
+
+import java.util.*;
+
+public class e3LegendaryFarming {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Map<String, Integer> materials = new TreeMap<>();
+        materials.put("shards", 0);
+        materials.put("fragments", 0);
+        materials.put("motes", 0);
+        Map<String, Integer> junk = new TreeMap<>();
+        boolean isOver = false;
+        while (!isOver) {
+            String[] input = (scanner.nextLine()).split(" ");
+            for (int i = 0; i < input.length; i += 2) {
+                int count = Integer.parseInt(input[i]);
+                String material = (input[i + 1]).toLowerCase();
+                if (material.equals("shards") || material.equals("fragments") || material.equals("motes")) {
+                    int current = materials.get(material);
+                    materials.put(material, current + count);
+                    if (materials.get(material) >= 250) {
+                        if (material.equals("shards")) {
+                            System.out.println("Shadowmourne  obtained!");
+                        } else if (material.equals("fragments")) {
+                            System.out.println("Valanyr obtained!");
+                        } else if (material.equals("motes")) {
+                            System.out.println("Dragonwrath obtained!");
+                        }
+                        materials.put(material, materials.get(material) - 250);
+                        isOver = true;
+                        break;
+                    }
+
+                } else {
+                    if (!junk.containsKey(material)) {
+                        junk.put(material, count);
+                    } else {
+                        int current = junk.get(material);
+                        junk.put(material, count + current);
+                    }
+                }
+
+            }
+
+        }
+        materials.entrySet().stream().sorted((n1, n2) -> n2.getValue().compareTo(n1.getValue())).forEach(entry -> System.out.println(entry.getKey() + ": "
+        + entry.getValue()));
+        junk.entrySet().stream().forEach(entry -> System.out.println(entry.getKey() + ": " + entry.getValue()));
+    }
+
+}
+..............................
