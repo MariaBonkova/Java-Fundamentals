@@ -1,0 +1,122 @@
+package TextProcessing;
+
+import java.util.Scanner;
+
+public class l1ReverseStrings {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String command = scanner.nextLine();
+        while (!command.equals("end")) {
+            String input = command;
+            String reverse = "";
+            for (int i = input.length() - 1; i >= 0; i--) {
+                reverse += input.charAt(i);
+
+            }
+            command = (scanner.nextLine());
+            System.out.printf("%s = %s%n",input,reverse);
+        }
+
+    }
+}
+.......................................
+package TextProcessing;
+
+import java.util.Scanner;
+
+public class l2RepeatStrings {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String[] arr = (scanner.nextLine()).split(" ");
+        for (String word : arr) {
+            String repeatedWord = repeated(word, word.length());
+            System.out.print(repeatedWord);
+
+
+        }
+    }
+
+    private static String repeated(String word, int repetition) {
+        String result = "";
+        for (int i = 0; i < repetition; i++) {
+            result += word;
+        }
+        return result;
+    }
+}
+.............................
+package TextProcessing;
+
+import java.util.Scanner;
+
+public class l3Substring {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String toRemove  = scanner.nextLine();
+        String  text = scanner.nextLine();
+        int index = text.indexOf(toRemove);
+        while (text.contains(toRemove)){
+            text = text.replace(toRemove,"");
+            index = text.indexOf(toRemove);
+        }
+        System.out.println(text);
+
+    }
+
+}
+....................................
+package TextProcessing;
+
+import java.util.Arrays;
+
+import java.util.Scanner;
+
+public class l4TextFilter {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String[] banned = (scanner.nextLine()).split(", ");
+        String text = scanner.nextLine();
+        for (String bannedWord:banned) {
+            String wordOfStar = convertOfStar(bannedWord);
+          text = text.replace(bannedWord,wordOfStar);
+        }
+        System.out.println(text);
+
+    }
+    private static String convertOfStar(String bannedWord) {
+        String star ="";
+        for (int i = 0; i < bannedWord.length(); i++) {
+            star+="*";
+        }
+        return star;
+    }
+}
+.....................................
+package TextProcessing;
+
+import java.util.Scanner;
+
+public class l5DigitsLettersAndOther {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String  input = scanner.nextLine();
+        
+        StringBuilder digit=new StringBuilder();
+        StringBuilder letter =new StringBuilder();
+        StringBuilder character =new StringBuilder();
+        
+        for (int i = 0; i <input.length() ; i++) {
+           char symbol = input.charAt(i);
+           if(Character.isDigit(symbol)){
+               digit.append(symbol);
+           }else if(Character.isAlphabetic(symbol)){
+               letter.append(symbol);
+           }else {
+               character.append(symbol);
+           }
+        }
+        System.out.println(digit);
+        System.out.println(letter);
+        System.out.println(character);
+    }
+}
