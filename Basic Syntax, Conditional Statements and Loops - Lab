@@ -1,0 +1,265 @@
+import java.util.Scanner;
+
+public class L1StudentInformatoin {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String name  = scanner.nextLine();
+        int age = Integer.parseInt(scanner.nextLine());
+        double grade =Double.parseDouble(scanner.nextLine());
+        System.out.printf("Name: %s, Age: %d, Grade: %.2f",name,age,grade);
+    }
+}
+......................................................
+import java.util.Scanner;
+
+public class l2Passed {
+    public static void main(String[] args) {
+       Scanner scanner = new Scanner(System.in);
+       double  grade  =Double.parseDouble(scanner.nextLine());
+       if(grade>=3){
+           System.out.println("Passed!");
+       }
+    }
+}
+............................................................
+import java.util.Scanner;
+
+public class l3PassedorFailed {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        double grade =Double.parseDouble(scanner.nextLine());
+        if(grade>3.00) {
+            System.out.println("Passed!");
+        }else {
+            System.out.println("Failed!");
+        }
+
+    }
+}
+...................................................................
+import java.util.Scanner;
+
+public class l4BackIn30Minutes {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int hour = Integer.parseInt(scanner.nextLine());
+        int min = Integer.parseInt(scanner.nextLine());
+
+        min = min + 30;
+
+        if (min >= 59) {
+            hour = hour + 1;
+            min = min - 60;
+        }
+        if (hour >= 23) {
+            hour = hour - 24;
+        }
+        System.out.printf("%d:%02d", hour, min);
+    }
+}
+...........................................................................
+import java.util.Scanner;
+
+public class l5MonthPrinter {
+    public static void main(String[] args) {
+        Scanner  scanner = new Scanner(System.in);
+        int mont =Integer.parseInt(scanner.nextLine());
+
+            switch (mont){
+                case 1:
+                    System.out.println("January");
+                      break;
+                case 2:
+                    System.out.println("February");
+                    break;
+                case 3:
+                    System.out.println("March");
+                    break;
+                case 4:
+                    System.out.println("April");
+                    break;
+                case 5:
+                    System.out.println("May");
+                    break;
+                case 6:
+                    System.out.println("June");
+                    break;
+                case 7:
+                    System.out.println("July");
+                    break;
+                case 8:
+                    System.out.println("August");
+                    break;
+                    case 9:
+                    System.out.println("September");
+                    break;
+                case 10:
+                    System.out.println("October");
+                    break;
+                case 11:
+                    System.out.println("November");
+                    break;
+                case 12:
+                    System.out.println("December");
+                    break;
+                default:
+                    System.out.println("Error!");
+                    break;
+
+            }
+        }
+    }
+.......................................................................
+import java.util.Scanner;
+
+public class l6ForeignLanguages {
+    public static void main(String[] args) {
+        Scanner  scanner = new Scanner(System.in);
+        String name = scanner.nextLine();
+        if(name.equals("England") || name.equals ("USA")){
+            System.out.println("English");
+        }else if (name.equals("Spain") || name.equals("Argentina") || name.equals("Mexico")){
+            System.out.println("Spanish");
+        }else {
+            System.out.println("unknown");
+        }
+
+    }
+}
+....................................................................
+import java.util.Scanner;
+
+public class l7TheatrePromotions {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String typeOfDay = scanner.nextLine();
+        int age = Integer.parseInt(scanner.nextLine());
+        int price = 0;
+        if (age >= 0 && age <= 18) {
+            if (typeOfDay.equals("Weekday")) {
+                price = 12;
+            } else if (typeOfDay.equals("Weekend")) {
+                price = 15;
+            } else if (typeOfDay.equals("Holiday")) {
+                price = 5;
+            }
+        } else if (age > 18 && age <= 64) {
+            if (typeOfDay.equals("Weekday")) {
+                price = 18;
+            } else if (typeOfDay.equals("Weekend")) {
+                price = 20;
+            } else if (typeOfDay.equals("Holiday")) {
+                price = 12;
+            }
+
+        } else if (age > 64 && age <= 122) {
+            if (typeOfDay.equals("Weekday")) {
+                price = 12;
+            } else if (typeOfDay.equals("Weekend")) {
+                price = 15;
+            } else if (typeOfDay.equals("Holiday")) {
+                price = 10;
+            }
+        } else {
+            System.out.println("Error!");
+
+        }
+        System.out.println(price+"$");
+    }
+}
+......................................................
+import java.util.Scanner;
+
+public class l8Divisibleby3 {
+    public static void main(String[] args) {
+        for (int i = 3; i <=99 ; i+=3) {
+            System.out.println(i);
+
+        }
+    }
+}
+.......................................
+import java.util.Scanner;
+
+public class l9SumofOddNumbers {
+    public static void main(String[] args) {
+        Scanner  scanner = new Scanner(System.in);
+        int n = Integer.parseInt(scanner.nextLine());
+        int sum=1;
+        int sumOdd=0;
+        for (int i=1; i<=n; i++) {
+            System.out.println(sum);
+            sumOdd=sumOdd+sum;
+                sum=sum+2;
+        }
+        System.out.printf("Sum: %d",sumOdd);
+    }
+
+}
+.................................................
+import java.util.Scanner;
+
+public class l10MultiplicationTable {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+       int n =Integer.parseInt(scanner.nextLine());
+        for (int i = 1; i <=10 ; i++) {
+            int pr = n*i;
+            System.out.printf("%d X %d = %d\n",n,i,pr);
+            
+        }
+    }
+}
+.............................................
+import java.util.Scanner;
+
+public class l11MultiplicationTable2 {
+    public static void main(String[] args) {
+        Scanner  scanner = new Scanner(System.in);
+        int n =Integer.parseInt(scanner.nextLine());
+        int k =Integer.parseInt(scanner.nextLine());
+        if(k>10){
+            System.out.printf("%d X %d = %d\n",n,k,n*k);
+        }
+        for (int i = k; i <=10; i++) {
+
+            int pr = n*i;
+            System.out.printf("%d X %d = %d\n",n,i,pr);
+
+        }
+    }
+}
+...........................................
+import java.util.Scanner;
+
+public class l12EvenNumber {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = Integer.parseInt(scanner.nextLine());
+
+        while (n % 2 != 0) {
+            System.out.println("Please write an even number.");
+            n = Integer.parseInt(scanner.nextLine());
+        }
+        System.out.printf("The number is: %d", Math.abs(n));
+    }
+
+}
+.....................................
+import java.util.Scanner;
+
+public class l13RefactorSumofOddNumbe {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int n = Integer.parseInt(scanner.nextLine());
+        int sum = 1;
+        int sumo =0;
+        for (int i = 1; i <= n; i++) {
+            System.out.println(sum);
+            sumo+=sum;
+            sum = sum+2;
+        }
+        System.out.printf("Sum: %d%n", sumo);     
+    }
+}
