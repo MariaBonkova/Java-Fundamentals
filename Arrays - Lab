@@ -1,0 +1,167 @@
+package Arrays;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class l1DayOfWeek {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int day= Integer.parseInt (scanner.nextLine());
+        String [] days ={"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+        if(day >=1 && day <=7){
+            System.out.println(days[day-1]);
+        }else{
+            System.out.println("Invalid day!");
+        }
+
+    }
+}
+........................................
+package Arrays;
+
+import java.util.Scanner;
+
+public class l2PrintNumbersinReverseOrder {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = Integer.parseInt(scanner.nextLine());
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+           arr[i] =  Integer.parseInt(scanner.nextLine());
+        }
+        for (int i = arr.length-1; i >=0 ; i--) {
+            System.out.print(arr[i]+" ");
+
+        }
+
+    }
+}
+..........................................
+package Arrays;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class l3SumEvenNumbers {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+      // int[]numArr = Arrays.stream(scanner.nextLine().split(" ")).mapToInt(e->Integer.parseInt(e)).toArray();
+       String  n = scanner.nextLine();
+       String[]num=n.split(" ");
+       int[]numArr=new int[num.length];
+        for (int i = 0; i < numArr.length; i++) {
+            numArr[i]= Integer.parseInt(num[i]);
+        }
+
+        int sum=0;
+        for (int i = 0; i < numArr.length ; i++) {
+            if (numArr [i]%2 == 0){
+               sum+=numArr[i];
+            }
+        }
+        System.out.println(sum);
+    }
+}
+.................................................
+package Arrays;
+
+import java.util.Scanner;
+
+public class l4ReverseArrayofStrings {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String input  = scanner.nextLine();
+        String[] inputArr = input.split(" ");
+        for (int i = 0; i < inputArr.length/2; i++) {
+            String oldElements = inputArr[i];
+            inputArr[i]=inputArr [inputArr.length-1-i];
+            inputArr[inputArr.length-1-i] = oldElements;
+
+        }
+        System.out.print(String.join(" ",inputArr));
+    }
+}
+........................................
+package Arrays;
+
+import java.sql.Array;
+import java.util.Scanner;
+
+public class l5EvenandOddSubtraction {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+       String  variable  = scanner.nextLine();
+       String [] arr = variable.split(" ");
+       int[]numArr = new int[arr.length];
+        int evenSum=0;
+        int oddSum=0;
+        for (int i = 0; i < arr.length; i++) {
+
+            numArr[i]=Integer.parseInt(arr[i]);
+            if(numArr[i]%2==0){
+                evenSum+=numArr[i];
+            }else {
+                oddSum+=numArr[i];
+            }
+        }
+        int diff=evenSum-oddSum;
+        System.out.println(diff);
+
+    }
+}
+..............................................
+package Arrays;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class l6EqualArrays {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[] firstArr = Arrays.stream(scanner.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+        int[] secondArr = Arrays.stream(scanner.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+
+        int maxLength = Math.max(firstArr.length, secondArr.length);
+        int sum = 0;
+        boolean isNotEquals=false  ;
+        for (int i = 0; i < maxLength; i++) {
+
+            if (firstArr[i] == secondArr[i]) {
+                sum = sum + firstArr[i];
+
+            }
+            if (firstArr[i]!= secondArr[i]) {
+                isNotEquals=true;
+             System.out.printf("Arrays are not identical. Found difference at %d index.", i);
+             break;
+            }
+        }
+        if(isNotEquals=false){
+            System.out.printf("Arrays are identical. Sum: %d", sum);
+        }
+    }
+}
+................................................
+package Arrays;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class l7CondenseArraytoNumber {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int[] nums = Arrays.stream(scanner.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+
+        while (nums.length-1!=0) {//докато дължината на масива е различна от една кутийка. Докато индекса стане 0.
+            int[] condensed = new int[nums.length - 1];
+            for (int i = 0; i < nums.length-1; i++) {
+                condensed[i] = nums[i] + (nums[i + 1]);
+            }
+
+            nums = condensed;
+        }
+        System.out.println(nums[0]);
+    }
+}
