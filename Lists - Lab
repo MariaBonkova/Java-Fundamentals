@@ -1,0 +1,190 @@
+package List;
+
+import java.text.DecimalFormat;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
+public class l1SumAdjacentEqualNumbers {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        List<Double>numList = Arrays.stream(scanner.nextLine().split(" ")).map(Double::parseDouble).collect(Collectors.toList());
+        for (int i = 0; i < numList.size()-1; i++) {
+            if(numList.get(i).equals(numList.get(i+1)) ){
+                numList.set(i, numList.get(i) + numList.get(i+1));//събира  двете числа и преместав сумата на 0левия индекс, като изтрива стария
+                numList.remove(i+1);
+                i=-1;
+            }
+        }
+        System.out.println(joinElementsByDelimiter(numList, " "));
+    }
+    public static String joinElementsByDelimiter (List<Double>numList, String delimiter){
+        String output ="";
+        for (Double item: numList){
+            DecimalFormat df = new DecimalFormat("0.#");//задавам че ще искам даползам този метод да ми форматира цифрите.
+            // След нулата ако има цифра да я принти ако е нула да не я принти.
+            String numDf = df.format(item)+delimiter;//задавам как да ми се форматира айтема и с конкатенация долепям празно място делиметър
+            output+=numDf;
+        }
+        return output;
+    }
+}
+............................
+package List;
+
+import java.text.DecimalFormat;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
+public class l2GaussTrick {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        List<Integer> numList = Arrays.stream((scanner.nextLine().split(" "))).map(Integer::parseInt).collect(Collectors.toList());
+        int size = numList.size() / 2;
+        for (int i = 0; i < size; i++) { 
+            
+            numList.set(i, numList.get(i) + numList.get(numList.size() - 1));
+            numList.remove(numList.size() - 1);
+        }
+
+        System.out.println(numList.toString().replaceAll("[\\[\\],]", ""));
+    }
+}
+..................................
+package List;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
+public class l3MergingLists {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        List<Integer> firstList = Arrays.stream((scanner.nextLine().split(" "))).map(Integer::parseInt).collect(Collectors.toList());
+        List<Integer> secondList = Arrays.stream((scanner.nextLine().split(" "))).map(Integer::parseInt).collect(Collectors.toList());
+        List<Integer> newList = new ArrayList<>();
+        int minSize = Math.min(firstList.size(), secondList.size());
+
+        for (int i = 0; i < minSize; i++) {
+            int first = firstList.get(i);
+            int second = secondList.get(i);
+            newList.add(first);
+            newList.add(second);
+        }
+        if (firstList.size()<secondList.size()){
+           newList.addAll(secondList.subList(minSize,secondList.size()));
+        }else {
+            newList.addAll(firstList.subList(minSize,firstList.size() ));
+        }
+        System.out.println(newList.toString().replaceAll("[\\[\\],]", ""));
+    }
+}
+.................................................
+package List;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
+public class l4ListManipulationBasics {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        List<Integer> numList = Arrays.stream((scanner.nextLine().split(" "))).map(Integer::parseInt).collect(Collectors.toList());
+        String  input = scanner.nextLine();
+
+        while (!input.equals("end")){
+
+            List<String>commandLine = Arrays.stream(input.split(" ")).collect(Collectors.toList());
+            String command = commandLine.get(0);// изнасяме в променлива нулевия индекс, който се яваява командата/тя е стринт/.
+            // В горинят лист ги разделяме защото имаме команда и чифра, а цифрата после в инт променлива ще си я вземем.
+
+            switch (command) {
+                case "Add":
+                    int numToAdd = Integer.parseInt(commandLine.get(1));//// така си взимаме инта от листа
+                   numList.add(numToAdd);
+                    //{number}: add a number to the end of the list
+                    break;
+                case "Remove":
+                    int numToRemove = Integer.parseInt(commandLine.get(1));
+                    numList.remove(Integer.valueOf(numToRemove));
+                    // {number}: remove a number from the list
+                    break;
+                case "RemoveAt":
+                    int numToRemoveAt =Integer.parseInt(commandLine.get(1));
+                    numList.remove(numToRemoveAt);
+
+                    // {index}: remove a number at a given index
+                    break;
+                case "Insert":
+                    int numToInsert = Integer.parseInt(commandLine.get(1));
+                    int indexToInsert = Integer.parseInt(commandLine.get(2));
+                    // {number} {index}: insert a number at a given index
+                    numList.add(indexToInsert,numToInsert);
+                    break;
+
+            }
+            input = scanner.nextLine();
+
+        }
+        System.out.println(numList.toString().replaceAll("[\\[\\],]", ""));
+    }
+}
+.............................................
+package List;
+
+import java.util.*;
+import java.util.stream.Collectors;
+
+public class l6ListofProducts {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = Integer.parseInt(scanner.nextLine());
+        List<String> product= new ArrayList<>();
+        for (int i = 0; i < n ; i++) {
+            String current = (scanner.nextLine());
+            product.add(current);
+        }
+        Collections.sort(product);
+        for (int i = 0; i < product.size() ; i++) {
+            System.out.printf("%d.%s%n",i+1,product.get(i));
+        }
+    }
+}
+....................................
+package List;
+
+import jdk.jshell.Snippet;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
+public class l7RemoveNegativesandReverse {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        List<Integer> numList = Arrays.stream((scanner.nextLine()).split(" ")).map(Integer::parseInt).collect(Collectors.toList());
+        for (int i = 0; i < numList.size(); i++) {
+            if(numList.get(i) < 0){
+                numList.removeIf(n->n<0);
+            }
+            if(numList.isEmpty()){
+                System.out.println("empty");
+            }
+        }
+        Collections.reverse(numList);
+        System.out.println(numList.toString().replaceAll("[\\[\\],]", ""));
+
+    }
+}
+
+
