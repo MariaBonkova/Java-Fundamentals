@@ -1,0 +1,354 @@
+package Methods;
+
+import java.util.Scanner;
+
+public class l1SignofInteger {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int number = Integer.parseInt(scanner.nextLine());
+        printSign(number);
+
+    }
+    public static void printSign(int num){
+        if (num>0){
+            System.out.println("The number 2 is positive.");
+        }else if(num==0){
+            System.out.println("The number 0 is zero.");
+        }else {
+            System.out.println("The number -5 is negative.");
+        }
+    }
+}
+...................................
+package Methods;
+
+import java.util.Scanner;
+
+public class l2Grades {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        double grade = Double.parseDouble(scanner.nextLine());
+       printsCorrespondingGrade(grade);
+
+    }
+
+    public static void printsCorrespondingGrade(double gradeInWord) {
+        if (gradeInWord < 3.00) {
+            System.out.println("Fail");
+        } else if (gradeInWord < 3.50) {
+            System.out.println("Poor");
+        } else if (gradeInWord < 4.50) {
+            System.out.println("Good");
+        } else if (gradeInWord < 5.50) {
+            System.out.println("Very good");
+        } else if (gradeInWord <= 6.00) {
+            System.out.println("Excellent");
+        }
+    }
+}
+......................................
+package Methods;
+
+import java.util.Scanner;
+
+public class l3PrintingTriangle {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        int n = Integer.parseInt(scanner.nextLine());
+        for (int i = 1; i <= n; i++) {
+            printLine(1, i);
+        }
+        for (int i = n - 1; i >= 1; i--) {
+            printLine(1, i);
+        }
+    }
+
+    public static void printLine(int start, int end) {
+        for (int i = start; i <= end; i++) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+    }
+}
+............................................
+package Methods;
+
+import java.util.Scanner;
+
+public class l4Calculations {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        String  calculations = scanner.nextLine();
+        int firstNum = Integer.parseInt(scanner.nextLine());
+        int secondNum = Integer.parseInt(scanner.nextLine());
+
+        if(calculations.equals("add")){
+            add (firstNum,secondNum);
+        }else if (calculations.equals("multiply")){
+            multiply (firstNum,secondNum);
+        }else if (calculations.equals("subtract")){
+            subtract (firstNum,secondNum);
+        }else if (calculations.equals("divide")) {
+            divide(firstNum, secondNum);
+        }
+
+
+    }public static void add (int first,int second){
+        System.out.println(first+second);
+    }
+    public static void multiply(int first,int second){
+        System.out.println(first*second);
+    }
+    public static void subtract(int first,int second){
+        System.out.println(first-second);
+    }
+    public static void divide(int first,int second){
+        System.out.println(first/second);
+    }
+
+}
+.....................................
+package Methods;
+
+import java.util.Scanner;
+
+public class l5Orders {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String products = scanner.nextLine();
+int quantity = Integer.parseInt(scanner.nextLine());
+
+        if(products.equals("coffee")){
+            getTotalSum(quantity,1.50);
+        }else if(products.equals("water")){
+            getTotalSum(quantity,1.00);
+        }else if(products.equals("coke")) {
+            getTotalSum(quantity, 1.40);
+        }else if(products.equals("snacks")) {
+            getTotalSum(quantity,  2.00);
+        }
+
+    }
+
+    public static void  getTotalSum(int quantity,double price) {
+       double totalSum = (quantity*price);
+        System.out.printf("%.2f",totalSum);
+    }
+
+}
+...................................
+package Methods;
+
+import java.util.Scanner;
+
+public class l6CalculateRectangleArea {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int width = Integer.parseInt(scanner.nextLine());
+        int length = Integer.parseInt(scanner.nextLine());
+        int area =CalculateRectangleArea(width,length);
+        System.out.println(area);
+
+    }
+
+    public static int CalculateRectangleArea(int width, int length) {
+        return width*length;
+
+
+    }
+}
+..................................................
+package Methods;
+
+import java.util.Scanner;
+
+public class l7RepeatString {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String input  = scanner.nextLine();
+        int repeat = Integer.parseInt(scanner.nextLine());
+        System.out.println(repeatText(input,repeat));
+
+    }
+
+    public static String repeatText (String textToRepeat,int repeat){
+        String result ="";
+        for (int i = 0; i < repeat ; i++) {
+            result+=textToRepeat;
+
+
+        }
+        return result;
+
+    }
+}
+.........................................
+package Methods;
+
+import java.text.DecimalFormat;
+import java.util.Scanner;
+
+public class l8MathPower {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+
+       double num = Double.parseDouble(scanner.nextLine());
+        int power = Integer.parseInt(scanner.nextLine());
+        System.out.println(new DecimalFormat("0.####").format (calculatesPower(num,power)));
+
+    }
+    public static double  calculatesPower (double number, double power){
+        double result= Math.pow(number,power);
+        return result;
+    }
+}
+.....................................
+package Methods;
+
+
+import java.util.Scanner;
+
+public class l9GreaterofTwoValues {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        String  input = scanner.nextLine();
+
+        if(input.equals("int")){
+            int firstNum = Integer.parseInt(scanner.nextLine());
+            int secNum = Integer.parseInt(scanner.nextLine());
+            System.out.println(getMax(firstNum,secNum));
+
+        }else if (input.equals("char")){
+            char symbolOne = scanner.nextLine().charAt(0);
+            char symbolTwo = scanner.nextLine().charAt(0);
+            System.out.println(getMax(symbolOne,symbolTwo));
+
+        }else if (input.equals("string")) {
+            String textOne = scanner.nextLine();
+            String textTwo = scanner.nextLine();
+            System.out.println(getMax(textOne, textTwo));
+        }
+
+    }
+    public static int getMax(int first, int second){
+        if(first>second){
+            return first;
+        }else {
+            return second;
+        }
+    }
+    public static char getMax(char first, char second){
+        if(first>second){
+            return first;
+        }else {
+            return second;
+        }
+
+    }
+    public static String getMax(String first, String second) {
+        String maxText="";
+        if (first.compareTo(second) > 0){
+           maxText=first;
+
+        }else {
+            maxText=second;
+
+        }
+        return maxText;
+    }
+
+}
+.......................................................
+package Methods;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class l10MultiplyEvensbyOdds {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = Math.abs(Integer.parseInt(scanner.nextLine()));
+        System.out.println(getMultipleOfEvensAndOdds(n));
+    }
+
+    public static int getSumOfEvensDigit(int n) {
+        String intToString= Integer.toString(n);
+        int evenSum = 0;
+        int[] arr = Arrays.stream((intToString.split(""))).mapToInt(Integer::parseInt).toArray();{
+            for (int i = 0; i < arr.length; i++) {
+                if (arr[i] % 2 == 0) {
+                    evenSum += arr[i];
+                }
+            }
+        }
+        return evenSum;
+    }
+    
+    public static int getSumOfOddDigit(int n) {
+        int oddSum = 0;
+        String intToString= Integer.toString(n);
+        int[] arr = Arrays.stream((intToString.split(""))).mapToInt(Integer::parseInt).toArray();{
+            for (int i = 0; i < arr.length; i++) {
+                if (arr[i] % 2 != 0) {
+                    oddSum += arr[i];
+                }
+            }
+        }
+        return oddSum;
+    }
+    
+    public static int getMultipleOfEvensAndOdds(int n) {
+        int evenSum = getSumOfEvensDigit(n);
+        int oddSum = getSumOfOddDigit(n);
+
+        return evenSum * oddSum;
+    }
+}
+.......................................................
+package Methods;
+
+import java.util.Scanner;
+
+public class l11MathOperations {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int firstNum = Integer.parseInt(scanner.nextLine());
+        String operator = scanner.nextLine();
+        int secNum = Integer.parseInt(scanner.nextLine());
+        switch (operator) {
+            case "+":
+                System.out.println(addDigit(firstNum,secNum));
+                break;
+            case "*":
+                System.out.println(multipleDigit(firstNum,secNum));
+                break;
+            case "-":
+                System.out.println(subtractionDigit(firstNum,secNum));
+                break;
+            case "/":
+                System.out.println(divideDigit(firstNum,secNum));
+                break;
+        }
+    }
+
+    public static int addDigit(int first, int sec) {
+        return first + sec;
+
+    }
+    public static int multipleDigit(int first, int sec) {
+        return first * sec;
+
+    }
+    public static int subtractionDigit(int first, int sec) {
+        return  first - sec;
+
+    }
+    public static int divideDigit(int first, int sec) {
+        return  first / sec;
+    }
+}
