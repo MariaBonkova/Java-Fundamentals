@@ -1,0 +1,298 @@
+package BasicSyntaxConditionalStatementsandLoopsEXC;
+
+import java.util.Scanner;
+
+public class E1Ages {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int age = Integer.parseInt(scanner.nextLine());
+        if(age<=2){
+            System.out.println("baby");
+        }else if(age<=13){
+            System.out.println("child");
+        }else if(age<=19){
+            System.out.println("teenager");
+        }else if(age<=65){
+            System.out.println("adult");
+        }else if(age>=66){
+            System.out.println("elder");
+        }
+    }
+}
+...............................................
+package BasicSyntaxConditionalStatementsandLoopsEXC;
+
+import java.util.Scanner;
+
+public class E2Division {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = Integer.parseInt(scanner.nextLine());
+        //2, 3, 6, 7, 10
+        if(n%10==0){
+            System.out.println("The number is divisible by 10");
+        }else  if (n%7==0){
+            System.out.println("The number is divisible by 7");
+        }else if (n%6==0){
+            System.out.println("The number is divisible by 6");
+        }else if (n%3==0){
+            System.out.println("The number is divisible by 3");
+        }else if (n%2==0){
+            System.out.println("The number is divisible by 2");
+        }else {
+            System.out.println("Not divisible");
+        }
+    }
+}
+......................................................
+package BasicSyntaxConditionalStatementsandLoopsEXC;
+
+import java.util.Scanner;
+
+public class E3Vacation {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int group = Integer.parseInt(scanner.nextLine());
+        String typeOfGroup = scanner.nextLine();
+        String days = scanner.nextLine();
+        double price = 0;
+
+        if (typeOfGroup.equals("Students")) {
+            if (days.equals("Friday")) {
+                price = 8.45;
+            } else if (days.equals("Saturday")) {
+                price = 9.80;
+            } else if (days.equals("Sunday")) {
+                price = 10.46;
+            }
+             price = group * price;
+            if (group >= 30 && group < 100) {
+                price = price * 0.85;
+            }
+
+        } else if (typeOfGroup.equals("Business")) {
+            if (days.equals("Friday")) {
+                price = 10.90*group;
+            } else if (days.equals("Saturday")) {
+                price = 15.60*group;
+            } else if (days.equals("Sunday")) {
+                price = 16*group;
+            }
+            if (group >= 100) {
+                price = 90 * price;
+            }
+        } else if (typeOfGroup.equals("Regular")) {
+            if (days.equals("Friday")) {
+                price = 15;
+            } else if (days.equals("Saturday")) {
+                price = 20;
+            } else if (days.equals("Sunday")) {
+                price = 22.50;
+            }
+           price = group * price;
+            if (group >= 10 && group <= 20) {
+                price = price * 0.95;
+            }
+        }
+        System.out.printf("Total price: %.2f",price);
+
+    }
+}
+.......................................................
+package BasicSyntaxConditionalStatementsandLoopsEXC;
+
+import java.util.Scanner;
+
+public class E4PrintandSum {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int startNum = Integer.parseInt(scanner.nextLine());
+        int endNum = Integer.parseInt(scanner.nextLine());
+        int sum=0;
+        for (int i = startNum; i <=endNum ; i++) {
+            System.out.printf("%d ",i);
+            sum=sum+i;
+        }
+        System.out.println();
+        System.out.println("Sum: "+sum);
+    }
+}
+...................................................
+package BasicSyntaxConditionalStatementsandLoopsEXC;
+
+import java.util.Scanner;
+
+public class e5Login {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String name = scanner.nextLine();
+        String pass = "";
+        for (int positon = name.length()-1; positon>=0;positon--) {
+            char current = name.charAt(positon);
+            pass+=current;
+
+        }
+        String input = (scanner.nextLine());
+        int counter=0;
+
+        while (!input.equals(pass)){
+            counter++;
+            if(counter==4){
+                System.out.printf("User %s blocked!\n",name);
+                break;
+            }
+            System.out.println("Incorrect password. Try again.");
+            input=scanner.nextLine();
+        }
+        if(input.equals(pass)){
+            System.out.printf("User %s logged in.\n",name);
+        }
+    }
+}
+....................................................
+package BasicSyntaxConditionalStatementsandLoopsEXC;
+
+import java.util.Scanner;
+
+public class e6StrongNumber {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int number = Integer.parseInt(scanner.nextLine());
+        int startNum = number;
+        int sumFactdigit = 0;
+        while (number != 0) {
+            int lastDigit = number % 10;
+            int digit = 1;
+            for (int i = 1; i <= lastDigit; i++) {
+                digit = digit * i;
+            }
+            sumFactdigit += digit;
+            number = number / 10;
+        }
+        if (startNum == sumFactdigit) {
+            System.out.print("yes");
+        } else {
+            System.out.println("no");
+        }
+    }
+}
+.......................................
+package BasicSyntaxConditionalStatementsandLoopsEXC;
+
+import com.sun.source.tree.WhileLoopTree;
+
+import java.util.Scanner;
+
+public class e7VendingMachine {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+
+       String command= scanner.nextLine();
+
+        double totalCoins=0;
+        while (!command.equals("Start")){
+           double coin = Double.parseDouble(command);
+            if (coin!=0.1 && coin!=0.2 && coin!=0.5 && coin!=1 && coin!=2){
+                System.out.printf("Cannot accept %.2f%n",coin);
+            }else {
+                totalCoins+=coin;
+            }
+           command=(scanner.nextLine());
+        }
+        String product  = scanner.nextLine();
+        double priceProduct=0;
+        double totolPriceProduct=0;
+        while (!product.equals("End")) {
+            if (product.equals("Nuts")) {
+                priceProduct += 2.0;
+                System.out.println("Purchased Nuts");
+            } else if (product.equals("Water")) {
+                priceProduct += 0.7;
+                System.out.println("Purchased Water");
+            } else if (product.equals("Crisps")) {
+                priceProduct += 1.5;
+                System.out.println("Purchased Crisps");
+            } else if (product.equals("Soda")) {
+                priceProduct += 0.8;
+                System.out.println("Purchased Soda");
+            } else if (product.equals("Coke")) {
+                priceProduct += 1.0;
+                System.out.println("Purchased Coke");
+            } else {
+                System.out.println("Invalid product ");
+            }
+            product = (scanner.nextLine());
+            totolPriceProduct += priceProduct;
+            
+            if (totalCoins < totolPriceProduct) {
+                System.out.println("Sorry, not enough money");
+                break;
+            }
+        }
+       totalCoins = totalCoins - totolPriceProduct;
+        System.out.printf("Change: %.2f",Math.abs(totalCoins));
+   
+    }
+}
+................................................
+package BasicSyntaxConditionalStatementsandLoopsEXC;
+
+import java.util.Scanner;
+
+public class e8TriangleofNumbers {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = Integer.parseInt(scanner.nextLine());
+        for (int row = 1; row <=n; row++) {
+            System.out.println() ;
+            for (int i =1; i <=row; i++) {
+              System.out.print(row + " ");
+
+           }
+// извод: първият цикъл ми върти да направя цифрите надолу и с празния прит ми сваля курсора,
+// втория цикъл брои само итерацииите колко пъти да притира дадената цифра настрани като пълнеж, като в случая се иска еднаква цифра да
+// принтира и слагаме че принти row, за да я изкарва еднаква.
+        }
+    }
+}
+........................................................
+package BasicSyntaxConditionalStatementsandLoopsEXC;
+
+import java.util.Scanner;
+
+public class e9PadawanEquipment {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        double amountOfmoneyGeorge = Double.parseDouble(scanner.nextLine());
+        int countOfStudents = Integer.parseInt(scanner.nextLine());
+        double priceLightsabers = Double.parseDouble(scanner.nextLine());
+        double priceRobes = Double.parseDouble(scanner.nextLine());
+        double belts = Double.parseDouble(scanner.nextLine());
+
+        double moreAbers = countOfStudents + Math.ceil(countOfStudents * 0.10);
+        double discountBelts = 0;
+        if (countOfStudents >= 6) {
+            discountBelts = (countOfStudents - (countOfStudents / 6))*belts;
+        } else {
+            discountBelts = countOfStudents * belts;
+
+        }
+
+        double cost = (priceLightsabers * moreAbers) + (countOfStudents * priceRobes) + ( discountBelts);
+
+
+        if (cost <= amountOfmoneyGeorge) {
+            System.out.printf("The money is enough - it would cost %.2flv.", cost);
+        } else {
+            System.out.printf("George Lucas will need %.2flv more.", cost - amountOfmoneyGeorge);
+        }
+
+    }
+}
+.......................................
+
+
+
+
+
