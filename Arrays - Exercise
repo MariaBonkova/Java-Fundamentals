@@ -1,0 +1,194 @@
+package Arrays;
+
+import java.util.Scanner;
+
+public class e1Train {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int wagon = Integer.parseInt(scanner.nextLine());
+        int[]wagons = new int[wagon];
+        int sum=0;
+        int people=0;
+        for (int i = 0; i < wagons.length; i++) {
+            wagons[i]= Integer.parseInt(scanner.nextLine());
+            people= wagons[i];
+            sum+=people;
+            System.out.print(people+" ");
+        }
+        System.out.println();
+        System.out.println(sum);
+    }
+}
+..............................................
+package Arrays;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class e2CommonElements {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String first = scanner.nextLine();
+        String[] firstArr = first.split(" ");
+
+        String second = scanner.nextLine();
+        String[] secondArr = second.split(" ");
+
+        for (String elementOfSecond : secondArr) {
+            for (String elementOfFirst : firstArr) {
+                if (elementOfSecond.equals(elementOfFirst)) {
+                    System.out.print(elementOfSecond+" ");
+                }
+            }
+        }
+    }
+}
+................................................
+package Arrays;
+
+import java.util.Scanner;
+
+public class e3ZigZagArrays {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int digit = Integer.parseInt(scanner.nextLine());
+
+        String[] firstArr = new String[digit];
+        String[] secondArr = new String[digit];
+
+        for (int i = 0; i < digit; i++) {
+            String input = scanner.nextLine();
+
+            String firstNum = input.split(" ")[0];
+            String secondNum = input.split(" ")[1];
+
+            if (i % 2 == 1) {
+                firstArr[i] = firstNum;
+                secondArr[i] = secondNum;
+            } else {
+                firstArr[i] = secondNum;
+                secondArr[i] = firstNum;
+            }
+        }
+        for (String elements: secondArr){
+            System.out.print(elements + " ");
+        }
+        System.out.println();
+        for (String elements : firstArr) {
+            System.out.print(elements+ " ");
+
+        }
+    }
+}
+............................................
+package Arrays;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class e4ArrayRotation {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+       String input   = scanner.nextLine();
+       String[]numArr = input.split(" ");
+        int n  = Integer.parseInt(scanner.nextLine());
+       for (int i = 0; i < n ; i++) {
+            String number = numArr[0];
+           for (int j = 0; j < numArr.length-1 ; j++) {
+               numArr[j] = numArr[j+1] ;
+           }
+           numArr[numArr.length-1] = number;
+        }
+        for (String elements: numArr){
+            System.out.print(elements + " ");
+        }
+
+    }
+}
+.................................................
+package Arrays;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class e5TopIntegers {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[]numArr = Arrays.stream((scanner.nextLine().split(" "))).mapToInt(Integer::parseInt).toArray();
+      int top=0;
+       for (int i = 0; i < numArr.length-1 ; i++) {
+           if(numArr[i]>numArr[i+1]){
+              top= numArr[i];
+               System.out.print(top+" ");
+           }
+        }
+        System.out.print (numArr[numArr.length-1]);
+
+    }
+}
+..................................................
+package Arrays;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class e7MaxSequenceofEqualElements {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[] numArr = Arrays.stream(scanner.nextLine().split(" ")).mapToInt(e -> Integer.parseInt(e)).toArray();
+        int length = 1;
+        int maxLength=0;
+
+        int startIndex=0;
+        int bestStartIndex =0;
+
+        for (int i = 1; i < numArr.length; i++) {
+            if (numArr[i] == numArr[i - 1]) {
+                length++;
+
+            }else {
+                length=1;
+                startIndex=i;
+            }
+            if(length>maxLength){
+                maxLength=length;
+                bestStartIndex=startIndex;
+            }
+
+        }
+        for (int i = bestStartIndex; i < bestStartIndex + maxLength; i++) {
+            System.out.print(numArr[i]+" ");
+
+        }
+    }
+}
+................................................
+package Arrays;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class e8MagicSum {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int[] arr = Arrays.stream((scanner.nextLine()).split(" ")).mapToInt(Integer::parseInt).toArray();
+        int n = Integer.parseInt(scanner.nextLine());
+        int magicNum=0;
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i+1; j < arr.length; j++) {
+                int indexOne=arr[i];
+                int indexTwo=arr[j];
+                if(indexOne+indexTwo==n){
+                    magicNum=n;
+                    System.out.println(indexOne+" "+indexTwo);
+
+                }
+            }
+
+        }
+    }
+}
+.............................................................
+
