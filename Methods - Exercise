@@ -1,0 +1,79 @@
+package Methods;
+
+import java.util.Scanner;
+
+public class e1SmallestOfThreeNumbers {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int firstNum = Integer.parseInt(scanner.nextLine());
+        int secNum = Integer.parseInt(scanner.nextLine());
+        int thirdNum = Integer.parseInt(scanner.nextLine());
+        printMinDigit(firstNum,secNum,thirdNum);
+
+    }
+    public static void printMinDigit(int one,int two,int three){
+        if (one<two){
+            System.out.println(one);
+        }else if(two<three){
+            System.out.println(two);
+        }else if(three<one){
+            System.out.println(three);
+        }
+    }
+}
+...........................................
+package Methods;
+
+import javax.swing.*;
+import java.util.Scanner;
+
+public class e2VowelsCount {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine().toLowerCase();
+        printVowelsSum(input);
+    }
+    
+   public static void printVowelsSum (String vowels){
+       int count = 0;
+       for (int i = 0; i < vowels.length(); i++) {
+          char current = vowels.charAt(i);
+           if (current==('a')
+                   || current==('o')
+                   || current==('e')
+                   || current==('i')
+                   || current==('u')) {
+               count++;
+           }
+       }
+       System.out.println(count);
+
+     }
+}
+.................................
+package Methods;
+
+import java.util.Scanner;
+
+public class e3CharactersinRange {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+         char firstSymbol = scanner.nextLine().charAt(0);
+         char secondSymbol = scanner.nextLine().charAt(0);
+         printBetweenSymbol(firstSymbol,secondSymbol);
+
+    }
+    public static void printBetweenSymbol(char one, char two){
+        if (one < two) {
+            for (int i = one+1; i < two; i++) {
+                System.out.printf("%c ",i);
+            }
+        } else if (two < one) {
+            for (int i = two+1; i < one; i++) {
+                System.out.printf("%c ",i);
+            }
+        }
+
+    }
+}
+......................................
